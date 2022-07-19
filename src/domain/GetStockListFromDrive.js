@@ -66,30 +66,23 @@ function readCsvFile(accountDataFile) {
     return stocks;
 }
 
-function readTable(sheet) {
-  // Helper to read a single row
-  const _readRow = (rowIndex, range) => {
-    range = range || sheet.getRange(rowIndex, 1, 1, sheet.getLastColumn());
-    let col = 1;
-    const result = [];
-    while(range.getCell(1, col).getValue() !== "") {
-      result.push(range.getCell(1, col).getValue());
-      col++;
-    } 
-    return result;
+function getStockList(dataFolderName) {
+  const folders = DriveApp.getFoldersByName(dataFolderName);
+  if (!folders.hasNext()) {
+    return;
   }
 
-  const _createObject = (keys, values) => {
-    const object = {};
-    if (values.length < keys.length) return;
-    for (let i = 0; i < keys.length; i++) {
-      object[keys[i]] = values[i];
-    }
-    return object;
-  };
+  // Find the most recently created subfolder
+  const investmentDataFolder = folders.next();
+  const latestFolder = findMostRecentlyCreatedSubfolder(investmentDataFolder);
+  if (!latestFolder)
+    return;
+  const newSheetName = latestFolder.getName();
 
-  const keys = _readRow(1);
-  const lastRow = sheet.getLastRow();
-  const dataRows = sheet.getRange(2, 1, lastRow-1, keys.length).getValues();
-  return dataRows.map(row => _createObject(keys, row));
+  const accountDataFiles = latestFolder.getFiles();
+  const masterStockList = new StockList();
+  while(accountDataFiles.hasNext()) {
+    masterStockList.append(readCsvFile(accountDataFiles.next()));
+  }
+  return {newSheetName, masterStockList};
 }
