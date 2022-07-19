@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-balancer",
+  "version": "1.0.0",
+  "description": "Google Apps Script project to produce a \"portfolio view\" in Google Sheet from data extracted from bank statements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsblaw/portfolio-balancer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsblaw/portfolio-balancer/issues"
+  },
+  "homepage": "https://github.com/bsblaw/portfolio-balancer#readme",
+  "dependencies": {
+    "@google/clasp": "^2.4.1"
+  }
+}
