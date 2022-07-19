@@ -21,3 +21,8 @@ function getStockList(dataFolderName) {
   }
   return {newSheetName, masterStockList};
 }
+
+function newPortfolioSnapshotSheet() {
+  const {newSheetName, masterStockList} = getStockList(DATA_FOLDER_NAME);
+  presentToSheet(masterStockList, newSheet(newSheetName));
+}
