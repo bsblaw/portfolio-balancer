@@ -7,14 +7,14 @@ const stockCategories = {
     'GOLD': ['XGD']
 };
 
-function findCategory(stock) {
+function _findCategory(stock) {
     for( let category in stockCategories ) {
         if (stockCategories[category].includes(stock.Symbol)) return category;
     }
     return 'Unknown';
 }
 
-function readCsvFile(accountDataFile) {
+function _readCsvFile(accountDataFile) {
     const lines = accountDataFile.getBlob().getDataAsString().split('\n');
     let isHeader = false;
     let stockProperties = null;
@@ -56,7 +56,7 @@ function readCsvFile(accountDataFile) {
                   stock[stockProperties[i]] =  !isNaN(cells[i]) ? parseFloat(cells[i]) : cells[i];
                 }
             }
-            const category = findCategory(stock);
+            const category = _findCategory(stock);
             stock['Category'] = category;
             stock['Account'] = accountName.split('-')[1].trim();
             stocks.push(stock);
@@ -66,7 +66,7 @@ function readCsvFile(accountDataFile) {
     return stocks;
 }
 
-function getStockList(dataFolderName) {
+function getStockListFromDrive(dataFolderName) {
   const folders = DriveApp.getFoldersByName(dataFolderName);
   if (!folders.hasNext()) {
     return;
@@ -82,7 +82,7 @@ function getStockList(dataFolderName) {
   const accountDataFiles = latestFolder.getFiles();
   const masterStockList = new StockList();
   while(accountDataFiles.hasNext()) {
-    masterStockList.append(readCsvFile(accountDataFiles.next()));
+    masterStockList.append(_readCsvFile(accountDataFiles.next()));
   }
   return {newSheetName, masterStockList};
 }
