@@ -10,7 +10,7 @@ For investors with funds scattered across multiple financial institutions and/or
 
 ## How to use it
 
-1. Download bank statements in CSV format to a Google Drive folder of your choice. You must group CSV files with the same timestamp into a subfolder. Each subfolder essentially represents a snapshot of your porfolio in time. For example, you may designated "/PorfolioBalanceData" as the main folder, then download CSV files for "Jan 1, 2023" into a subfolder named "/PorfolioBalanceData/2023-01-01/".
+1. Download bank statements in CSV format to a Google Drive folder of your choice. You must group CSV files with the same timestamp into a subfolder. Each subfolder essentially represents a snapshot of your portfolio in time. For example, you may designated "/PortfolioBalanceData" as the main folder, then download CSV files for "Jan 1, 2023" into a subfolder named "/PortfolioBalanceData/2023-01-01/".
 
 2. Open the Google Spreadsheet where you would like portfolio information to be displayed. Install the Apps Script by clicking on "Extensions -> Apps Script", then click on the "+" button next to "Library". Install the PortfolioBalance library by searching the script ID: `13qknmTXWz8jjsjW-eaGxdLmusTN0NBHxtsy4umHLleQocUknR6wBO7_s`. Replace auto-generated content of "Code.gs" with the following:
 
@@ -23,7 +23,7 @@ function onOpen() {
 }
 
 function getSnapshot() {
-  PortfolioBalancer.createNewSheet("PorfolioBalancerData"); // Change argument to match your folder name
+  PortfolioBalancer.createNewSheet("PortfolioBalancerData"); // Change argument to match your folder name
 }
 ```
 
