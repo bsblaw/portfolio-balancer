@@ -4,7 +4,9 @@
   "description": "Google Apps Script project to produce a \"portfolio view\" in Google Sheet from data extracted from bank statements",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clasp-login": "npx clasp login --no-localhost",
+    "clasp-runner-login": "echo > $CLASP_RUNNER > ./cred.json; npx clasp login --no-localhost --creds cred.json; rm cred.json"
   },
   "repository": {
     "type": "git",
