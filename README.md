@@ -27,6 +27,6 @@ function getSnapshot() {
 }
 ```
 
-3. Refresh the spread sheet. After a few seconds, you should see a new "Automation" menu.
+3. Reload the spread sheet. After a few seconds, you should see a new "Automation" menu.
 
-4. Click on "Automation -> Get portfolio snapshot" to create a portfolio snapshot. When you subsequently create a new subfolder in your data folder and select the same menu option again, the a latest snapshot will be created based on the new data.
+4. Click on "Automation -> Get portfolio snapshot" to create a portfolio snapshot. When you want to create more snapshots later, simply collect CSV files into a new subfolder in your data folder, then select the same menu option again to create a new snapshot.
